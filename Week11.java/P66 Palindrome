@@ -1,0 +1,20 @@
+class Main {
+    public static void main(String[] args) {
+        String str="Madam";
+        int start=0;
+        int end=str.length()-1;
+        boolean isPalin=true;
+        while (start<=end){
+            if (Character.toLowerCase(str.charAt(start))==Character.toLowerCase(str.charAt(end))){
+                start++;
+                end--;
+            }
+            else{
+                isPalin=false;
+                break;
+            }
+        }
+        if (!isPalin)System.out.println("Not Palin");
+        else System.out.println("Palin");
+    }
+}
