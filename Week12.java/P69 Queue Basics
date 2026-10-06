@@ -1,0 +1,71 @@
+package Queue;
+
+public class Basics {
+	public static void main(String[] args) {
+		QueueP queueP=new QueueP(5);
+		queueP.enqueue(10);
+		queueP.enqueue(20);
+		queueP.enqueue(30);
+		queueP.enqueue(40);
+		queueP.enqueue(50);
+//		queueP.enqueue(60);
+		queueP.display();
+		
+		queueP.dequeue();
+		queueP.display();
+		queueP.dequeue();
+		queueP.display();
+		queueP.peek();
+	}
+}
+class QueueP{
+	int[] arr;
+	int rear;
+	int front;
+	int size;
+	QueueP(int size){
+		this.size=size;
+		arr=new int[size];
+		front=-1;
+		rear=-1;
+	}
+	
+	void enqueue(int value) {
+		if (rear==size-1) {
+			System.out.println("Overflow");
+			return;
+		}
+		if (front==-1) {
+			front=0;
+		}
+		rear++;
+		arr[rear]=value;
+		System.out.println("Value inserted");
+	}
+	void dequeue() {
+		if (front==-1 || front>rear) {System.out.println("Queue Underflow");
+		return;
+		}
+		System.out.println(arr[front]+"removed");
+		front++;
+	}
+	
+	void peek() {
+		if (front==-1 || front>rear) {
+			System.out.println("Queue is empty");
+			return;
+		}
+		System.out.println("Front element"+arr[front]);
+	}
+	void display() {
+		if (front==-1 || front>rear) {
+			System.out.println("Queue is empty");
+			return;
+		}
+		for (int i=front;i<=rear;i++) {
+			System.out.print(arr[i]+" ");
+		}
+		return;
+	}
+	
+}
