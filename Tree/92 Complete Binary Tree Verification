@@ -1,0 +1,18 @@
+class Solution {
+    public boolean isCompleteTree(TreeNode root) {
+        if(root==null)return true;
+        Queue<TreeNode> q=new LinkedList<>();
+        q.add(root);
+        boolean flag=false;
+        while(!q.isEmpty()){
+            TreeNode node=q.poll();
+            if(node==null)flag=true;
+            else{
+                if(flag)return false;
+                q.add(node.left);
+                q.add(node.right);
+            }
+        }
+        return true;
+    }
+}
