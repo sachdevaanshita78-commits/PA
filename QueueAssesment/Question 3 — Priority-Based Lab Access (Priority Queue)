@@ -1,0 +1,37 @@
+import java.util.*;
+
+class Request {
+    String id;
+    int priority;
+    int order;
+
+    Request(String id,int priority,int order) {
+        this.id=id;
+        this.priority=priority;
+        this.order=order;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int q=sc.nextInt();
+        PriorityQueue<Request> pq=new PriorityQueue<>((a,b)->{
+            if(a.priority!=b.priority)
+                return Integer.compare(a.priority,b.priority);
+            return Integer.compare(a.order,b.order);
+        });
+        int order=0;
+        while(q-->0){
+            String op=sc.next();
+            if(op.equals("REQUEST")){
+                String id=sc.next();
+                int priority=sc.nextInt();
+                pq.add(new Request(id,priority,order++));
+            }
+            else if(op.equals("NEXT")){
+                System.out.println(pq.isEmpty()?"EMPTY":pq.poll().id);
+            }
+        }
+    }
+}
