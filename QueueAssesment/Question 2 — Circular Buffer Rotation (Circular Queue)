@@ -1,0 +1,37 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int c=sc.nextInt();
+        int q=sc.nextInt();
+        int[] arr=new int[c];
+        int front=0,size=0;
+        while(q-->0){
+            String op=sc.next();
+            if(op.equals("ADD")){
+                int x=sc.nextInt();
+                if(size==c)System.out.println("FULL");
+                else{
+                    arr[(front+size)%c]=x;
+                    size++;
+                }
+            }
+            else if(op.equals("REMOVE")){
+                if(size==0)System.out.println("EMPTY");
+                else{
+                    System.out.println(arr[front]);
+                    front=(front+1)%c;
+                    size--;
+                }
+            }
+            else if(op.equals("ROTATE")){
+                int k=sc.nextInt();
+                if(size>0){
+                    k%=size;
+                    front=(front+k)%c;
+                }
+            }
+        }
+    }
+}
