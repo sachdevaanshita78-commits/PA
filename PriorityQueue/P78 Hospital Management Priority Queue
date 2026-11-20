@@ -1,0 +1,26 @@
+import java.util.*;
+
+class Patient {
+    String name;
+    int priority;
+
+    Patient(String name,int priority) {
+        this.name=name;
+        this.priority=priority;
+    }
+}
+
+class HospitalManagement {
+    public static void main(String[] args) {
+        PriorityQueue<Patient> pq=new PriorityQueue<>((a,b)->a.priority-b.priority);
+
+        pq.add(new Patient("A",3));
+        pq.add(new Patient("B",1));
+        pq.add(new Patient("C",2));
+
+        while(!pq.isEmpty()) {
+            Patient p=pq.poll();
+            System.out.println(p.name+" "+p.priority);
+        }
+    }
+}
