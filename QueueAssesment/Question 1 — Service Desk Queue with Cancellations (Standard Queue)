@@ -1,0 +1,24 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int q=sc.nextInt();
+        Queue<Integer> queue=new LinkedList<>();
+
+        while(q-->0){
+            String op=sc.next();
+
+            if(op.equals("JOIN")){
+                queue.add(sc.nextInt());
+            }
+            else if(op.equals("SERVE")){
+                System.out.println(queue.isEmpty()?"EMPTY":queue.poll());
+            }
+            else if(op.equals("CANCEL")){
+                int x=sc.nextInt();
+                queue.remove(x);
+            }
+        }
+    }
+}
