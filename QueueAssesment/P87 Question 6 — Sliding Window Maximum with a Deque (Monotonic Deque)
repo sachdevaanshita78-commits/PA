@@ -1,0 +1,23 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int k=sc.nextInt();
+        int[] nums=new int[n];
+        for(int i=0;i<n;i++)nums[i]=sc.nextInt();
+        Deque<Integer> dq=new LinkedList<>();
+        StringBuilder ans=new StringBuilder();
+        for(int i=0;i<n;i++){
+            while(!dq.isEmpty()&&dq.peekFirst()<=i-k)dq.pollFirst();
+            while(!dq.isEmpty()&&nums[dq.peekLast()]<=nums[i])dq.pollLast();
+            dq.offerLast(i);
+            if(i>=k-1){
+                if(ans.length()>0)ans.append(" ");
+                ans.append(nums[dq.peekFirst()]);
+            }
+        }
+        System.out.println(ans);
+    }
+}
