@@ -1,0 +1,41 @@
+class MaxHeap {
+    ArrayList<Integer> heap=new ArrayList<>();
+
+    public void insert(int val) {
+        heap.add(val);
+        int i=heap.size()-1;
+        while(i>0){
+            int parent=(i-1)/2;
+            if(heap.get(parent)>=heap.get(i))break;
+            Collections.swap(heap,parent,i);
+            i=parent;
+        }
+    }
+
+    public int remove() {
+        if(heap.isEmpty())return -1;
+        int ans=heap.get(0);
+        int last=heap.remove(heap.size()-1);
+        if(!heap.isEmpty()){
+            heap.set(0,last);
+            heapify(0);
+        }
+        return ans;
+    }
+
+    public void heapify(int i) {
+        int largest=i;
+        int left=2*i+1;
+        int right=2*i+2;
+        if(left<heap.size()&&heap.get(left)>heap.get(largest))largest=left;
+        if(right<heap.size()&&heap.get(right)>heap.get(largest))largest=right;
+        if(largest!=i){
+            Collections.swap(heap,i,largest);
+            heapify(largest);
+        }
+    }
+
+    public int peek() {
+        return heap.isEmpty()?-1:heap.get(0);
+    }
+}
